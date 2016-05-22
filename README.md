@@ -2,7 +2,7 @@
 
 ## About
 
-ObservableEvent is a simple observable pattern implemented in Swift.
+ObservableEvent is a simple observer pattern implemented in Swift.
 
 ## Documentation
 
