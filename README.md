@@ -19,7 +19,7 @@ let scoreChangedEvent = ObservableEvent<Int>()
 #### Adding an Observer
 
 ```swift
-let removeScoreObserver = scoreChangeEvent.addObserver{ score in
+let removeScoreObserver = scoreChangeEvent.addObserver { score in
     // process new score
 }
 ```
