@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2095C771CF0F79D00AD8BCD /* ObservableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2095C761CF0F79D00AD8BCD /* ObservableEvent.swift */; };
 		E2EBB95F1CE7E94300D6B7E4 /* ObservableEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBB95E1CE7E94300D6B7E4 /* ObservableEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2EBB9661CE7E94300D6B7E4 /* ObservableEvent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2EBB95B1CE7E94300D6B7E4 /* ObservableEvent.framework */; };
 		E2EBB96B1CE7E94300D6B7E4 /* ObservableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EBB96A1CE7E94300D6B7E4 /* ObservableEventTests.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2095C761CF0F79D00AD8BCD /* ObservableEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableEvent.swift; sourceTree = "<group>"; };
 		E2EBB95B1CE7E94300D6B7E4 /* ObservableEvent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObservableEvent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2EBB95E1CE7E94300D6B7E4 /* ObservableEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObservableEvent.h; sourceTree = "<group>"; };
 		E2EBB9601CE7E94300D6B7E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		E2EBB95D1CE7E94300D6B7E4 /* ObservableEvent */ = {
 			isa = PBXGroup;
 			children = (
+				E2095C761CF0F79D00AD8BCD /* ObservableEvent.swift */,
 				E2EBB95E1CE7E94300D6B7E4 /* ObservableEvent.h */,
 				E2EBB9601CE7E94300D6B7E4 /* Info.plist */,
 			);
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2095C771CF0F79D00AD8BCD /* ObservableEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +314,7 @@
 		E2EBB9701CE7E94300D6B7E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +325,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.endlesswavesoftware.ObservableEvent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		E2EBB9711CE7E94300D6B7E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -378,6 +385,7 @@
 				E2EBB9711CE7E94300D6B7E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2EBB9721CE7E94300D6B7E4 /* Build configuration list for PBXNativeTarget "ObservableEventTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +394,7 @@
 				E2EBB9741CE7E94300D6B7E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
