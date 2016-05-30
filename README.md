@@ -2,11 +2,11 @@
 
 ## About
 
-ObservableEvent is a simple oversable pattern implemented in Swift.
+ObservableEvent is a simple observer pattern implemented in Swift.
 
 ## Documentation
 
-For full documentation see the blog post [Observable Events in Swift](http://www.endlesswavesoftware.com/blog)
+For full documentation see the blog post [Observable Events in Swift](http://endlesswavesoftware.com/blog/observable-events-in-swift/)
 
 ## Example
 
@@ -19,9 +19,9 @@ let scoreChangedEvent = ObservableEvent<Int>()
 #### Adding an Observer
 
 ```swift
-let removeScoreObserver = scoreChangeEvent.addObserver{ score in
-        // process new score
-	}
+let removeScoreObserver = scoreChangeEvent.addObserver { score in
+    // process new score
+}
 ```
 
 #### Notifying Observers
