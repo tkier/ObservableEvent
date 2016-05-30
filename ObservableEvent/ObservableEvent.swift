@@ -25,12 +25,12 @@ public typealias RemoveObserver = () -> Void
 public class ObservableEvent<T> {
     
     private var observers: [(Int, T -> Void)] = []
-    private var lastId = 0
+    private var nextId = ObservableEvent<T>.idGenerator()
     
     public init() {}
     
     public func addObserver(observer: T -> Void) -> RemoveObserver {
-        let id = newId()
+        let id = nextId()
         observers.append((id, observer))
         
         return { [weak self] in
@@ -48,8 +48,11 @@ public class ObservableEvent<T> {
         self.observers = self.observers.filter { $0.0 != id }
     }
     
-    private func newId() -> Int {
-        lastId += 1
-        return lastId
+    private static func idGenerator() -> () -> Int {
+        var lastId = 0
+        return {
+            lastId += 1
+            return lastId
+        }
     }
 }
