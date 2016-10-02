@@ -45,7 +45,7 @@ open class ObservableEvent<T> {
     }
     
     fileprivate func removeObserverForId(_ id:Int) {
-        self.observers = self.observers.filter { $0.0 != id }
+        observers = observers.filter { $0.0 != id }
     }
     
     fileprivate static func idGenerator() -> () -> Int {
