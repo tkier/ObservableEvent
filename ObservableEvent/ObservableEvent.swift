@@ -22,14 +22,14 @@ import Foundation
 
 public typealias RemoveObserver = () -> Void
 
-public class ObservableEvent<T> {
+open class ObservableEvent<T> {
     
-    private var observers: [(Int, T -> Void)] = []
-    private var nextId = ObservableEvent<T>.idGenerator()
+    fileprivate var observers: [(Int, (T) -> Void)] = []
+    fileprivate var nextId = ObservableEvent<T>.idGenerator()
     
     public init() {}
     
-    public func addObserver(observer: T -> Void) -> RemoveObserver {
+    open func addObserver(_ observer: @escaping (T) -> Void) -> RemoveObserver {
         let id = nextId()
         observers.append((id, observer))
         
@@ -38,17 +38,17 @@ public class ObservableEvent<T> {
         }
     }
     
-    public func notifyObservers(data: T) {
+    open func notifyObservers(_ data: T) {
         for observer in observers {
             observer.1(data)
         }
     }
     
-    private func removeObserverForId(id:Int) {
+    fileprivate func removeObserverForId(_ id:Int) {
         self.observers = self.observers.filter { $0.0 != id }
     }
     
-    private static func idGenerator() -> () -> Int {
+    fileprivate static func idGenerator() -> () -> Int {
         var lastId = 0
         return {
             lastId += 1
