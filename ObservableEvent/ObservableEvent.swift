@@ -22,6 +22,7 @@ import Foundation
 
 public typealias RemoveObserver = () -> Void
 
+/// Implements a simple observer pattern
 open class ObservableEvent<T> {
     
     fileprivate var observers: [(Int, (T) -> Void)] = []
@@ -29,6 +30,15 @@ open class ObservableEvent<T> {
     
     public init() {}
     
+    /**
+     
+     Adds an observer to this event.
+     
+     - Parameter observer: A closure that will be called when notifyObservers is called.
+     
+     - Returns: A closure that can be called later to remove the observer.
+     
+     */
     open func addObserver(_ observer: @escaping (T) -> Void) -> RemoveObserver {
         let id = nextId()
         observers.append((id, observer))
@@ -38,6 +48,13 @@ open class ObservableEvent<T> {
         }
     }
     
+    /**
+     
+      Notify all observers of this event.
+     
+     - Parameter data: A data value to pass to the observers.
+     
+     */
     open func notifyObservers(_ data: T) {
         for observer in observers {
             observer.1(data)
