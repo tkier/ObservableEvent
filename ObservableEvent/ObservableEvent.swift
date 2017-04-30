@@ -20,8 +20,6 @@
 
 import Foundation
 
-public typealias RemoveObserver = () -> Void
-
 /// Implements a simple observer pattern
 open class ObservableEvent<T> {
     
@@ -36,16 +34,16 @@ open class ObservableEvent<T> {
      
      - Parameter observer: A closure that will be called when notifyObservers is called.
      
-     - Returns: A closure that can be called later to remove the observer.
+     - Returns: A Disposable that will remove the observer when it is disposed.
      
      */
-    open func addObserver(_ observer: @escaping (T) -> Void) -> RemoveObserver {
+    open func observe(_ observer: @escaping (T) -> Void) -> Disposable {
         let id = nextId()
         observers.append((id, observer))
         
-        return { [weak self] in
+        return EventDisposable({ [weak self] in
             self?.removeObserverForId(id)
-        }
+        })
     }
     
     /**

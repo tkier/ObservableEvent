@@ -31,7 +31,7 @@ class ObservableEventTests: XCTestCase {
         
         var observerdValue = 0
         
-        let removeObserver = event.addObserver { value in
+        let disposable = event.observe { value in
             observerdValue = value
         }
         
@@ -43,7 +43,7 @@ class ObservableEventTests: XCTestCase {
         event.notifyObservers(2)
         XCTAssert(observerdValue == 2)
         
-        removeObserver()
+        disposable.dispose()
         
         event.notifyObservers(3)
         XCTAssert(observerdValue == 2)
@@ -56,10 +56,10 @@ class ObservableEventTests: XCTestCase {
         var observerdValue1 = 0
         var observerdValue2 = 0
         
-        let removeObserver1 = event.addObserver { value in
+        let disposable1 = event.observe { value in
             observerdValue1 = value
         }
-        let removeObserver2 = event.addObserver { value in
+        let disposable2 = event.observe { value in
             observerdValue2 = value
         }
         
@@ -74,13 +74,13 @@ class ObservableEventTests: XCTestCase {
         XCTAssert(observerdValue1 == 2)
         XCTAssert(observerdValue2 == 2)
         
-        removeObserver1()
+        disposable1.dispose()
         
         event.notifyObservers(3)
         XCTAssert(observerdValue1 == 2)
         XCTAssert(observerdValue2 == 3)
         
-        removeObserver2()
+        disposable2.dispose()
         
         event.notifyObservers(4)
         XCTAssert(observerdValue1 == 2)
@@ -93,7 +93,7 @@ class ObservableEventTests: XCTestCase {
         
         var eventFired = false
         
-        let removeObserver = event.addObserver {
+        let disposable = event.observe {
             eventFired = true
         }
         
@@ -103,7 +103,7 @@ class ObservableEventTests: XCTestCase {
         
         XCTAssertTrue(eventFired)
         
-        removeObserver()
+        disposable.dispose()
     }
     
     func testTupleEvent() {
@@ -113,7 +113,7 @@ class ObservableEventTests: XCTestCase {
         var result1 = 0
         var result2 = 0
         
-        let removeObserver = event.addObserver { a, b in
+        let disposable = event.observe { a, b in
             result1 = a
             result2 = b
         }
@@ -126,7 +126,7 @@ class ObservableEventTests: XCTestCase {
         XCTAssert(result1 == 1)
         XCTAssert(result2 == 2)
         
-        removeObserver()
+        disposable.dispose()
     }
     
     func testObserverMethod() {
@@ -135,7 +135,7 @@ class ObservableEventTests: XCTestCase {
         
         eventValue = nil
         
-        let removeObserver = event.addObserver(eventChanged)
+        let disposable = event.observe(eventChanged)
         
         XCTAssertNil(eventValue)
         
@@ -143,7 +143,7 @@ class ObservableEventTests: XCTestCase {
         
         XCTAssert(eventValue == "It Works!!")
         
-        removeObserver()
+        disposable.dispose()
     }
     
     func eventChanged(value:String) {

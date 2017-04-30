@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ObservableEvent"
-  s.version      = "1.0.0"
+  s.version      = "2.0.0"
   s.summary      = "A simple observer pattern implemented in Swift."
 
   s.description  = "ObservableEvent is a simple observer pattern implemented in Swift."

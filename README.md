@@ -8,7 +8,7 @@ ObservableEvent is a simple observer pattern implemented in Swift. For more info
 The ObservableEvent framework can be installed using CocoaPods. Add the following line to your project pod file and the run "pod install".
 
 ```text
-	pod 'ObservableEvent', '~> 1.0.0'
+	pod 'ObservableEvent', '~> 2.0.0'
 ```
 
 ## Using ObservableEvent
@@ -57,20 +57,20 @@ myEvent.notifyObservers()
 
 #### Adding an Observer
 
-To add an observer for an event call the event's addObserver method, passing a closure that will be called when notifyObservers is called. The addObserver call returns a closure that can be can called later to remove the observer (see below for more details). The returned closure should be saved so that it can be called later.
+To add an observer for an event call the event's observe method, passing a closure that will be called when notifyObservers is called. The observe call returns a Disposable object that can be used to remove the observer (see below for more details). 
 
 In our game score event example, an observer might look like:
 
 ```swift
-let removeScoreObserver = scoreChangeEvent.addObserver { score in
+let scoreDisposable = scoreChangeEvent.observe { score in
     // process new score
 }
 ```
 
-Of for if the event had a tuple type:
+Or if the event had a tuple type:
 
 ```swift
-let removeScoreObserver = scoreChangeEvent.addObserver { score, isHighScore in
+let scoreDisposable = scoreChangeEvent.observe { score, isHighScore in
     // process new score and isHighScore
 }
 ```
@@ -78,21 +78,82 @@ let removeScoreObserver = scoreChangeEvent.addObserver { score, isHighScore in
 Or if the event is using Void for the generic type:
 
 ```swift
-let removeMyEventObserver = scoreChangeEvent.addObserver { 
+let myEventDispsoable = myEvent.observe { 
     // event fired, do something
 }
 ```
 
 #### Removing an Observer
 
-To remove an observer call the closure that was returned when addObserver was called.  For example:
+To remove an observer call the dispose method on the Disposable object that was returned by the observe method. For example:
 
 ```swift
-removeScoreObserver()
+scoreDisposable.dispose()
 ```
 
+If you are observing several events and have multiple Disoposable objects, it is more convient to use a DisposeBag to remove all the observers at once. First create an instance of DisposeBag. Then when adding an observer, add the returned disposble to the bag by calling the diposeWith(bag) method. For example:
+
+```swift
+let bag = DisposeBag()
+
+scoreChangeEvent.observe { score, isHighScore in
+    // process new score and isHighScore
+}.disposeWith(bag)
+
+myEvent.observe { 
+    // event fired, do something
+}.disposeWith(bag)
+```
+
+Now when the bag is deallocated all its contents will automatically be disposed causing all the observers to be removed. You can also explicitly call the dispose() method on the bag itself to dispose all of its contents.
+
+## Property
+ObservableEvents are often used to provide change notifications for when a specific variable changes. It would typically look something like:
+
+```swift
+var score: Int = 0 {
+	didSet {
+		scoreChangedEvent.notififyObservers(score)
+	}
+}
+let scoreChangedEvent = ObservableEvent<Int>()
+```
+
+The Property class provides a convient way to implement this pattern by combining the variable instance and the observerable event into a single class.
+
+#### Using Properties
+
+To create a property, create an instance of the Property class, passing the properties initial value to the intialaizer. The above score example can be implementing using a Property as follows:
+
+```swift
+var score: Property(0)
+```
+
+To access the value of the Property use its value property:
+
+```swift
+let currentScore = score.value
+```
+
+You set the property's value by assigning to its value property. Whenever a property's value is set, it will automatically notify all observers.
+
+```swift
+score.value = currentScore + 100
+```
+
+To add an observer to a property call its observe method. It works identical to the observe method on ObservableEvent, passing in a closure and returning a Disposable:
+
+
+```swift
+score.observe { score in
+	// process the score
+}.disposeWith(bag)
+```
+
+An important note about properties... the observer closure will be called with the current value of the property as soon as the observe method is called. This means that property observers are called with the current value of the property and any future values. 
+
 ## License
-Copyright 2016 Endless Wave Software LLC
+Copyright 2017 Endless Wave Software LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

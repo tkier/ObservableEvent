@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		E2095C771CF0F79D00AD8BCD /* ObservableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2095C761CF0F79D00AD8BCD /* ObservableEvent.swift */; };
+		E29CDB301EB2A43E007C3E8E /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CDB2F1EB2A43E007C3E8E /* Property.swift */; };
+		E29CDB321EB2A7D4007C3E8E /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CDB311EB2A7D4007C3E8E /* Disposable.swift */; };
+		E29CDB341EB2A8D6007C3E8E /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CDB331EB2A8D6007C3E8E /* DisposeBag.swift */; };
+		E29CDB361EB2ABDF007C3E8E /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CDB351EB2ABDF007C3E8E /* PropertyTests.swift */; };
+		E2D927E41EB302B800806E93 /* DisposableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D927E31EB302B800806E93 /* DisposableTests.swift */; };
+		E2D927E61EB5495800806E93 /* EventDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D927E51EB5495800806E93 /* EventDisposable.swift */; };
 		E2EBB95F1CE7E94300D6B7E4 /* ObservableEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBB95E1CE7E94300D6B7E4 /* ObservableEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2EBB9661CE7E94300D6B7E4 /* ObservableEvent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2EBB95B1CE7E94300D6B7E4 /* ObservableEvent.framework */; };
 		E2EBB96B1CE7E94300D6B7E4 /* ObservableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EBB96A1CE7E94300D6B7E4 /* ObservableEventTests.swift */; };
@@ -25,6 +31,12 @@
 
 /* Begin PBXFileReference section */
 		E2095C761CF0F79D00AD8BCD /* ObservableEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableEvent.swift; sourceTree = "<group>"; };
+		E29CDB2F1EB2A43E007C3E8E /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		E29CDB311EB2A7D4007C3E8E /* Disposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
+		E29CDB331EB2A8D6007C3E8E /* DisposeBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposeBag.swift; sourceTree = "<group>"; };
+		E29CDB351EB2ABDF007C3E8E /* PropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
+		E2D927E31EB302B800806E93 /* DisposableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposableTests.swift; sourceTree = "<group>"; };
+		E2D927E51EB5495800806E93 /* EventDisposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDisposable.swift; sourceTree = "<group>"; };
 		E2EBB95B1CE7E94300D6B7E4 /* ObservableEvent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObservableEvent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2EBB95E1CE7E94300D6B7E4 /* ObservableEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObservableEvent.h; sourceTree = "<group>"; };
 		E2EBB9601CE7E94300D6B7E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,9 +85,13 @@
 		E2EBB95D1CE7E94300D6B7E4 /* ObservableEvent */ = {
 			isa = PBXGroup;
 			children = (
-				E2095C761CF0F79D00AD8BCD /* ObservableEvent.swift */,
 				E2EBB95E1CE7E94300D6B7E4 /* ObservableEvent.h */,
 				E2EBB9601CE7E94300D6B7E4 /* Info.plist */,
+				E2095C761CF0F79D00AD8BCD /* ObservableEvent.swift */,
+				E29CDB2F1EB2A43E007C3E8E /* Property.swift */,
+				E29CDB311EB2A7D4007C3E8E /* Disposable.swift */,
+				E2D927E51EB5495800806E93 /* EventDisposable.swift */,
+				E29CDB331EB2A8D6007C3E8E /* DisposeBag.swift */,
 			);
 			path = ObservableEvent;
 			sourceTree = "<group>";
@@ -84,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				E2EBB96A1CE7E94300D6B7E4 /* ObservableEventTests.swift */,
+				E29CDB351EB2ABDF007C3E8E /* PropertyTests.swift */,
+				E2D927E31EB302B800806E93 /* DisposableTests.swift */,
 				E2EBB96C1CE7E94300D6B7E4 /* Info.plist */,
 			);
 			path = ObservableEventTests;
@@ -201,6 +219,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E29CDB341EB2A8D6007C3E8E /* DisposeBag.swift in Sources */,
+				E2D927E61EB5495800806E93 /* EventDisposable.swift in Sources */,
+				E29CDB301EB2A43E007C3E8E /* Property.swift in Sources */,
+				E29CDB321EB2A7D4007C3E8E /* Disposable.swift in Sources */,
 				E2095C771CF0F79D00AD8BCD /* ObservableEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +231,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E29CDB361EB2ABDF007C3E8E /* PropertyTests.swift in Sources */,
+				E2D927E41EB302B800806E93 /* DisposableTests.swift in Sources */,
 				E2EBB96B1CE7E94300D6B7E4 /* ObservableEventTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
